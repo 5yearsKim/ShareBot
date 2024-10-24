@@ -1,0 +1,11 @@
+
+
+.git
+.gitignore
+*Dockerfile*
+_scripts
+cicd
+
+node_modules
+dist
+.env*
