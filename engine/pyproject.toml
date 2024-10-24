@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "lang-gossip"
+name = "sharebot-engine"
 version = "0.1.0"
 description = ""
 authors = ["5yearsKim <hypothesis22@naver.com>"]
