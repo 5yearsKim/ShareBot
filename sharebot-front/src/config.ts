@@ -10,7 +10,7 @@ export const [API_URL, SOCKET_URL] = ((): [string, string] => {
   } else {
     // dev
     if (fromLocal) {
-      return ["http://localhost:5010", ""];
+      return ["http://localhost:6021", ""];
     } else {
       return ["http://thisis.wrong.address", ""];
     }
@@ -20,12 +20,6 @@ export const [API_URL, SOCKET_URL] = ((): [string, string] => {
 export const FRONT_URL = "gossipbao.com";
 
 export const RESOURCE_URL = "https://resources.nonimos.com";
-
-export const BOT_INFO = {
-  thumbnail: "/images/panda.png",
-  name: "가십바오",
-  id: "gossip_bao",
-};
 
 export const OAUTH_GOOGLE_ID =
   STAGE == "prod"

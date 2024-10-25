@@ -8,7 +8,7 @@ import { ConfirmDialogShared } from "@/hooks/dialogs/ConfirmDialog";
 import { LoginDialogShared } from "@/hooks/dialogs/LoginDialog";
 
 import { buildImgUrl } from "@/utils/media";
-import { STAGE, FRONT_URL, BOT_INFO } from "@/config";
+import { STAGE, FRONT_URL } from "@/config";
 import "@/ui/global.scss";
 
 
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title,
     description,
     type: "website",
-    images: [buildImgUrl("https://" + FRONT_URL, BOT_INFO.thumbnail)]
+    // images: [buildImgUrl("https://" + FRONT_URL, BOT_INFO.thumbnail)]
   }
 };
 

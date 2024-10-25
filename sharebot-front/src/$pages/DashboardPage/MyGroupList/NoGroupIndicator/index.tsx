@@ -8,7 +8,6 @@ import { Card, CardActionArea } from "@mui/material";
 // import { Masonry } from "@mui/lab";
 import { GroupItem } from "@/components/GroupItem";
 import { useListData } from "@/hooks/ListData";
-import { BOT_INFO } from "@/config";
 import type { GroupT, ListGroupOptionT } from "@/types";
 
 type NoGroupIndicatorProps = {
@@ -40,11 +39,6 @@ export function NoGroupIndicator({ onGroupClick }: NoGroupIndicatorProps): JSX.E
         borderRadius={"50%"}
         overflow={"hidden"}
       >
-        <Image
-          src={BOT_INFO.thumbnail}
-          alt={BOT_INFO.name}
-          fill
-        />
       </Box>
 
       <Gap y={2}/>

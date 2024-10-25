@@ -2,15 +2,14 @@ from typing import Iterable
 
 import google.generativeai as genai
 
-from .base import BaseRagChecker 
-from ..schema import Message, RetrievalInput 
+from ..schema import Message, RetrievalInput
+from .base import BaseRagChecker
 
 
 class GeminiChecker(BaseRagChecker):
     def __init__(self, api_key: str) -> None:
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-pro')
-
+        self.model = genai.GenerativeModel("gemini-pro")
 
     def _convert_messages_to_prompt(self, messages: list[Message]) -> str:
         prompt = """
@@ -25,20 +24,18 @@ query?: string  // should_retrieve 가 false 면 query 는 없어도 되고, tru
 
 """
 
-        return prompt + '\n'.join([f'{m.role.name}: {m.content}' for m in messages])
-
-
+        return prompt + "\n".join([f"{m.role.name}: {m.content}" for m in messages])
 
     def check_rag(self, messages: list[Message]) -> RetrievalInput:
 
         prompt = self._convert_messages_to_prompt(messages)
 
-
-        rsp = self.model.generate_content(prompt,
+        rsp = self.model.generate_content(
+            prompt,
             generation_config=genai.types.GenerationConfig(
                 candidate_count=1,
                 temperature=0.0,
-            )
+            ),
         )
- 
-        return self.parse_response(rsp.text) # type: ignore
+
+        return self.parse_response(rsp.text)  # type: ignore

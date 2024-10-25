@@ -1,16 +1,18 @@
-from pydantic import BaseModel
-from qdrant_client.http.models import PointStruct as QdrantPoint, ScoredPoint as ScoredQdrantPoint
-from typing import Any
 import uuid
+from typing import Any
+
+from pydantic import BaseModel
+from qdrant_client.http.models import PointStruct as QdrantPoint
+from qdrant_client.http.models import ScoredPoint as ScoredQdrantPoint
 
 
 class Point(BaseModel):
-    id: int|str
+    id: int | str
     vector: list[float]
-    content: str 
-    group_id: int|str
-    meta: dict[str, Any]|None = None
-    
+    content: str
+    group_id: int | str
+    meta: dict[str, Any] | None = None
+
     def __repr__(self) -> str:
         return f"Point(id={self.id}, content={self.content}, group_id={self.group_id}), meta={self.meta})"
 
@@ -23,43 +25,40 @@ class Point(BaseModel):
             id=self.id,
             vector=self.vector,
             payload={
-                **(self.meta or {}) ,
-                'content': self.content,
-                'group_id': self.group_id,
-            }
+                **(self.meta or {}),
+                "content": self.content,
+                "group_id": self.group_id,
+            },
         )
 
+
 class ScoredPoint(BaseModel):
-    id: int|str
+    id: int | str
     content: str
-    group_id: int|str
-    meta: dict[str, Any]|None = None
+    group_id: int | str
+    meta: dict[str, Any] | None = None
     score: float
 
 
 class PointFactory:
     @staticmethod
-    def from_qdrant(q_point: QdrantPoint, with_vector:bool=True) -> Point:
-        payload: dict[str, Any] = q_point.payload # type: ignore
+    def from_qdrant(q_point: QdrantPoint, with_vector: bool = True) -> Point:
+        payload: dict[str, Any] = q_point.payload  # type: ignore
         return Point(
             id=q_point.id,
-            vector=q_point.vector if with_vector else [], # type: ignore
-            content=payload['content'],
-            group_id=payload['group_id'],
-            meta={k: v for k, v in payload.items() if k not in ['content', 'group_id']},
+            vector=q_point.vector if with_vector else [],  # type: ignore
+            content=payload["content"],
+            group_id=payload["group_id"],
+            meta={k: v for k, v in payload.items() if k not in ["content", "group_id"]},
         )
 
     @staticmethod
     def from_scored_qdrant(q_point: ScoredQdrantPoint) -> ScoredPoint:
-        payload: dict[str, Any] = q_point.payload # type: ignore
+        payload: dict[str, Any] = q_point.payload  # type: ignore
         return ScoredPoint(
             id=q_point.id,
-            content=payload['content'],
-            group_id=payload['group_id'],
-            meta={k: v for k, v in payload.items() if k not in ['content', 'group_id']},
+            content=payload["content"],
+            group_id=payload["group_id"],
+            meta={k: v for k, v in payload.items() if k not in ["content", "group_id"]},
             score=q_point.score,
         )
-
-    
-
-

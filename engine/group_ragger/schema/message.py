@@ -4,12 +4,11 @@ from typing import Literal
 from pydantic import BaseModel
 
 
-
 class MessageRole(Enum):
-    USER = 'user'
-    BOT = 'bot'
-    SYSTEM = 'system'
-    FUNCTION = 'function'
+    USER = "user"
+    BOT = "bot"
+    SYSTEM = "system"
+    FUNCTION = "function"
 
 
 class Message(BaseModel):
@@ -17,38 +16,35 @@ class Message(BaseModel):
     content: str
 
     def to_dict(self) -> dict[str, str]:
-        return {'role': self.role.value, 'content': self.content}
+        return {"role": self.role.value, "content": self.content}
 
     def to_openai(self) -> dict[str, str]:
-        role = ''
+        role = ""
         if self.role == MessageRole.USER:
-            role = 'user'
+            role = "user"
         elif self.role == MessageRole.BOT:
-            role = 'assistant'
+            role = "assistant"
         elif self.role == MessageRole.FUNCTION:
-            role = 'function'
+            role = "function"
         elif self.role == MessageRole.SYSTEM:
-            role = 'system'
+            role = "system"
         else:
             raise ValueError(f"Unsupported role: {self.role}")
-        return {'role': role, 'content': self.content}
+        return {"role": role, "content": self.content}
 
     def to_claude(self) -> dict[str, str]:
-        role = ''
+        role = ""
         if self.role == MessageRole.USER:
-            role = 'user'
+            role = "user"
         elif self.role == MessageRole.BOT:
-            role = 'assistant'
+            role = "assistant"
         elif self.role == MessageRole.FUNCTION:
-            role = 'function'
+            role = "function"
         elif self.role == MessageRole.SYSTEM:
-            role = 'system'
+            role = "system"
         else:
             raise ValueError(f"Unsupported role: {self.role}")
-        return {'role': role, 'content': self.content}
-
-
-
+        return {"role": role, "content": self.content}
 
 
 class MessageFactory:
@@ -65,15 +61,10 @@ class MessageFactory:
         return Message(role=MessageRole.SYSTEM, content=content)
 
 
-
 class StreamOutput(BaseModel):
     chunk: str
     text: str
-    status: Literal['done', 'progress']
+    status: Literal["done", "progress"]
 
     def to_dict(self) -> dict[str, str]:
-        return {'chunk': self.chunk, 'text': self.text, 'status': self.status}
-
-    
-
-
+        return {"chunk": self.chunk, "text": self.text, "status": self.status}

@@ -3,6 +3,7 @@ from typing import Iterable
 
 from ..schema import Message, StreamOutput
 
+
 class BaseGenerator(ABC):
     def __init__(self) -> None:
         pass

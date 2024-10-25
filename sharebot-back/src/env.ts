@@ -11,7 +11,7 @@ if (process.cwd().endsWith("/src")) {
 export const env = {
   // config
   STAGE: process.env.STAGE || "dev",
-  ENGINE_URL: process.env.ENGINE_URL || "http://localhost:8020",
+  ENGINE_URL: process.env.ENGINE_URL || "http://localhost:6010",
   ACCOUNT_SECRET: process.env.ACCOUNT_SECRET || "account_secret",
   USER_SECRET: process.env.USER_SECRET || "user_secret",
   SYSTEM_SECRET: process.env.SYSTEM_SECRET || "system_secret",
@@ -30,7 +30,5 @@ export const env = {
   GMAIL_MAIL: process.env.GMAIL_MAIL || "",
   GMAIL_PASS: process.env.GMAIL_PASS || "",
 };
-
-
 
 

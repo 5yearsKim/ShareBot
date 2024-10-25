@@ -25,7 +25,7 @@ export function Navbar() {
               userSelect: "none",
             }}
           >
-            <Txt variant="h6" className={aggro.className} >GOSSIP BAO</Txt>
+            <Txt variant="h6" className={aggro.className} >SHAREBOT</Txt>
           </Box>
         </Link>
 
