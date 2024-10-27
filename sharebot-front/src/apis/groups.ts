@@ -48,3 +48,13 @@ export async function deleteThumbnail(key: string): Promise<R.DeleteThumbnailRsp
   const rsp = await server.delete(`${root}/thumbnail`, { data: body });
   return rsp.data;
 }
+
+
+export async function uploadFile(file: File): Promise<R.UploadFileRsp> {
+  const formData = new FormData();
+  formData.append("file", file);
+  const rsp = await server.post(`${root}/file`, formData, {
+    headers: { "Content-Type": "multipart/form-data" }
+  });
+  return rsp.data;
+}

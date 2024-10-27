@@ -36,7 +36,7 @@ export function DashboardPage() {
 
         <Gap y={2} />
 
-        <Txt variant='h5'>내 그룹</Txt>
+        <Txt variant='h5'>내 프로젝트 </Txt>
 
         <Gap y={2} />
 
@@ -52,7 +52,7 @@ export function DashboardPage() {
                 variant="contained"
                 startIcon={<AddIcon/>}
               >
-                그룹 만들기
+                프로젝트 만들기
               </Button>
             </Link>
           </Row>
@@ -60,7 +60,7 @@ export function DashboardPage() {
 
         <Box pt={{ xs: 4, sm: 8, md: 12 }}/>
 
-        <Txt variant='h5'>이런 그룹은 어때요?</Txt>
+        <Txt variant='h5'>이런 프로젝트는 어때요?</Txt>
 
         <Gap y={2} />
 
@@ -73,7 +73,7 @@ export function DashboardPage() {
         <Gap y={2} />
 
         <TextField
-          label="그룹 검색"
+          label="프로젝트 검색"
           fullWidth
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

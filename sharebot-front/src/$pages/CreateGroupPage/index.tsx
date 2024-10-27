@@ -27,18 +27,18 @@ export function CreateGroupPage() {
           tag_id: tag.id,
         })));
       }
-      enqueueSnackbar(`그룹 ${created.name}이 생성되었어요.`, { variant: "success" });
+      enqueueSnackbar(`프로젝트 ${created.name}이/가 생성되었어요.`, { variant: "success" });
       setTimeout(() => {
-        enqueueSnackbar("관리자페이지에서 그룹 비밀번호를 설정할 수 있어요.", { variant: "info" });
+        enqueueSnackbar("관리자페이지에서 프로젝트 비밀번호를 설정할 수 있어요.", { variant: "info" });
       }, 800);
       router.replace(`/g/${created.key}`);
     } catch (e: any) {
       const errCode = e.response?.data?.code;
       if (errCode === "ALREADY_EXIST") {
-        enqueueSnackbar(`이미 존재하는 그룹키(${form.key})에요. 다른 그룹 키를 설정해주세요.`, { variant: "info" });
+        enqueueSnackbar(`이미 존재하는 프로젝트 키(${form.key})에요. 다른 그룹 키를 설정해주세요.`, { variant: "info" });
       } else {
         console.warn(e);
-        enqueueSnackbar("그룹 생성에 실패했어요.", { variant: "error" });
+        enqueueSnackbar("프로젝트 생성에 실패했어요.", { variant: "error" });
       }
     }
   }
@@ -49,7 +49,7 @@ export function CreateGroupPage() {
       height={NAV_HEIGHT}
     >
       <Container rtlP>
-        <Txt variant="h4">그룹 만들기</Txt>
+        <Txt variant="h4">프로젝트 만들기</Txt>
 
         <Gap y={2} />
 

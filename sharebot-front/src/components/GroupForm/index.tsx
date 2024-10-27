@@ -157,7 +157,7 @@ export function GroupForm({
   return (
     <Col>
       <TextField
-        label='그룹 이름'
+        label='프로젝트 이름'
         variant='standard'
         value={name}
         autoComplete="off"
@@ -166,13 +166,13 @@ export function GroupForm({
         helperText={nameErrText || nameHelpText}
       />
       <TextField
-        label='그룹 키'
+        label='프로젝트 키'
         variant='standard'
         value={groupKey}
         autoComplete="off"
         placeholder={"영문, 숫자, - 만 가능해요"}
         InputProps={{
-          endAdornment: <HelperTooltip tip="그룹 키는 URL에 활용되는 고유값이에요."></HelperTooltip>
+          endAdornment: <HelperTooltip tip="프로젝트 키는 URL에 활용되는 고유값이에요."></HelperTooltip>
         }}
         onChange={handleGroupKeyChange}
         error={Boolean(groupKeyErrText)}
@@ -183,7 +183,7 @@ export function GroupForm({
 
 
       <TextField
-        label='그룹 설명'
+        label='프로젝트 설명'
         variant='standard'
         multiline
         minRows={3}
@@ -198,7 +198,7 @@ export function GroupForm({
       <Gap y={2} />
 
       <Col alignItems='center'>
-        <Txt variant="subtitle1" fontWeight={700}>그룹 썸네일</Txt>
+        <Txt variant="subtitle1" fontWeight={700}>프로젝트 썸네일</Txt>
         <Gap y={2}/>
         <EditableAvatar
           src={thumbPath ? buildImgUrl(null, thumbPath) : undefined}
@@ -219,7 +219,7 @@ export function GroupForm({
 
         <Gap y={4}/>
 
-        <Txt variant="subtitle1" fontWeight={700}>그룹 카테고리</Txt>
+        <Txt variant="subtitle1" fontWeight={700}>프로젝트 카테고리</Txt>
         <Gap y={2}/>
         <GroupTagCandidate
           selected={selectedTag}

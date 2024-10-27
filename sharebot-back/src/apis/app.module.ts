@@ -15,6 +15,7 @@ import { EmailVerificationModule } from "@/apis/EmailVerification/module";
 import { GroupModule } from "@/apis/Group/module";
 import { GroupTagModule } from "@/apis/GroupTag/module";
 import { GroupAdminModule } from "@/apis/GroupAdmin/module";
+import { GroupFileModule } from "@/apis/GroupFile/module";
 import { GroupSecretModule } from "@/apis/GroupSecret/module";
 import { UserModule } from "@/apis/User/module";
 import { XGroupGroupTagModule } from "@/apis/XGroupGroupTag/module";
@@ -30,6 +31,7 @@ import { XGroupGroupTagModule } from "@/apis/XGroupGroupTag/module";
     AuthModule,
     EmailVerificationModule,
     GroupModule,
+    GroupFileModule,
     GroupAdminModule,
     GroupSecretModule,
     GroupTagModule,

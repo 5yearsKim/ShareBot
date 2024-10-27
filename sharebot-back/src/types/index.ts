@@ -8,6 +8,7 @@ export * from "./Auth";
 export * from "./EmailVerification";
 export * from "./Group";
 export * from "./GroupAdmin";
+export * from "./GroupFile";
 export * from "./GroupSecret";
 export * from "./GroupTag";
 export * from "./Image";

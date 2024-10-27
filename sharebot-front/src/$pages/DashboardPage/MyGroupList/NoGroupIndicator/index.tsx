@@ -44,7 +44,7 @@ export function NoGroupIndicator({ onGroupClick }: NoGroupIndicatorProps): JSX.E
       <Gap y={2}/>
 
       <Box maxWidth={400}>
-        <Txt variant="subtitle2" textAlign='center' sx={{ wordBreak: "keep-all" }} >아직 내가 가입한 그룹이 없어요. 가십바오가 어떤 서비스인지 아래 그룹에서 테스트 해보실래요? </Txt>
+        <Txt variant="subtitle2" textAlign='center' sx={{ wordBreak: "keep-all" }} >아직 내가 가입한 프로젝트가 없어요. 셰어봇이 어떤 서비스인지 아래 프로젝트에서 테스트 해보실래요? </Txt>
       </Box>
 
       <Gap y={4} />

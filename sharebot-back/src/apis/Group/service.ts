@@ -11,7 +11,9 @@ import mime from "mime-types";
 import { join as pathJoin } from "path";
 import * as err from "@/errors";
 import { lookupBuilder } from "./fncs/lookup_builder";
-import type { GroupFormT, GroupT, GetGroupOptionT, ListGroupOptionT } from "@/types";
+import type {
+  GroupFormT, GroupT, GetGroupOptionT, ListGroupOptionT, UserT,
+} from "@/types";
 
 
 @Injectable()
@@ -73,7 +75,7 @@ export class GroupService {
   }
 
   async uploadThunmbnail(file: Express.Multer.File): Promise<string> {
-    let key = `gossip/groups/avatar_${new Date().getTime()}.${mime.extension(file.mimetype)}`;
+    let key = `sharebot/groups/avatar_${new Date().getTime()}.${mime.extension(file.mimetype)}`;
     if (STAGE == "dev") {
       key = pathJoin("dev/", key);
     }
@@ -82,11 +84,21 @@ export class GroupService {
   }
 
   async deleteThumbnail(key: string): Promise<void> {
-    if (!key.includes("gossip/groups/")) {
+    if (!key.includes("sharebot/groups/")) {
       throw new err.InvalidDataE();
     }
     await deleteFile(key);
   }
+
+  async uploadFile(user: UserT, file: Express.Multer.File): Promise<string> {
+    let key = `sharebot/groups/${user.group_id}/files/user_${user.id}_${new Date().getTime()}.${mime.extension(file.mimetype)}`;
+    if (STAGE == "dev") {
+      key = pathJoin("dev/", key);
+    }
+    await uploadFile(key, file.buffer, file.mimetype);
+    return key;
+  }
+
 
   // async getAvatarPresignedUrl(mimeType: string) {
   //   // let key = `groups/${groupId}/avatar_${new Date().getTime()}.${mime.extension(mimeType)}`;
@@ -98,7 +110,6 @@ export class GroupService {
   //   const putUrl = "";
   //   return { putUrl, key };
   // }
-
 
 }
 

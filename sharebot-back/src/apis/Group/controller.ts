@@ -63,7 +63,7 @@ export class GroupController {
     if (accountId) {
       listOpt.accountId = accountId;
     }
-    const fetched = this.service.list(listOpt);
+    const fetched = await this.service.list(listOpt);
 
     return fetched;
   }
@@ -127,6 +127,28 @@ export class GroupController {
     const { key } = body satisfies R.DeleteThumbnailRqs;
     await this.service.deleteThumbnail(key);
     return null;
+  }
+
+
+  @UseGuards(UserGuard)
+  @Post("/file")
+  @UseInterceptors(FileInterceptor("file"))
+  async uploadFile(
+    @UploadedFile() file: Express.Multer.File,
+    @User() user: UserT,
+  ): Promise<R.UploadThumbnailRsp> {
+
+    if (!file) {
+      throw new err.InvalidFieldE("file should be given as form-data");
+    }
+    // if (!file.mimetype.startsWith("image/")) {
+    //   throw new err.InvalidFieldE("image should be an image file");
+    // }
+    if (file.size > 1024 * 1024 * 50) {
+      throw new err.InvalidFieldE("file should be smaller than 50MB");
+    }
+    const key = await this.service.uploadFile(user, file);
+    return { key };
   }
 }
 

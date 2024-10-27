@@ -1,15 +1,12 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import * as AiChatApi from "@/apis/ai_chats";
 import * as AiMessageApi from "@/apis/ai_messages";
 import * as GlobalApi from "@/apis/global";
 import { differenceInMinutes } from "date-fns";
 
 import { Box, Col, Container, Row, Center, Gap } from "@/ui/layouts";
-import { CircularProgress } from "@mui/material";
 import { LoadingIndicator, LoadingBox, ErrorBox } from "@/components/$statusTools";
 import { Txt } from "@/ui/texts";
-import { PulseBox } from "@/ui/tools/PulseBox";
 import { useMe } from "@/stores/UserStore";
 import { useGroup } from "@/stores/GroupStore";
 import { useMainAiChat$, useMainAiChatActions } from "@/stores/MainAiChatStore";

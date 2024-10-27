@@ -21,14 +21,14 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/dashboard", request.url));
     }
 
-    if (pathname.startsWith("/g/")) {
-      // if pathname is /g/:groupKey, then redirect to /?groupKey=:groupKey
-      const pathItems = pathname.split("/");
-      const groupKey = pathItems[2];
-      if (!(["create"].includes(groupKey)) && (pathItems.length == 3 || pathItems[3] == "")) {
-        return NextResponse.redirect(new URL(`/g/${groupKey}/c`, request.url));
-      }
-    }
+    // if (pathname.startsWith("/g/")) {
+    //   // if pathname is /g/:groupKey, then redirect to /?groupKey=:groupKey
+    //   const pathItems = pathname.split("/");
+    //   const groupKey = pathItems[2];
+    //   if (!(["create"].includes(groupKey)) && (pathItems.length == 3 || pathItems[3] == "")) {
+    //     return NextResponse.redirect(new URL(`/g/${groupKey}/files`, request.url));
+    //   }
+    // }
   }
 
   if (!isAccountLoggedIn ) {

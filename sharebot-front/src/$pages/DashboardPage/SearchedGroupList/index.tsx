@@ -43,7 +43,7 @@ export function SearchedGroupList({
       <Row justifyContent='center'>
         <CloseIcon sx={{ color: "vague.main" }}/>
         <Gap x={1}/>
-        <Txt variant='body1' color='vague.main'>검색된 그룹이 없어요.</Txt>
+        <Txt variant='body1' color='vague.main'>검색된 프로젝트가 없어요.</Txt>
       </Row>
     );
   }

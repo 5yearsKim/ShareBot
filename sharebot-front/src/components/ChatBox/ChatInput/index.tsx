@@ -98,33 +98,3 @@ export const ChatInput = forwardRef<ChatInputT, ChatInputProps>((props, ref) => 
   );
 });
 
-// export function ChatInput({
-//   onSend,
-// }: ChatInputProps): JSX.Element {
-//   const [message, setMessage] = useState<string>("");
-
-//   function handleMessageChange(e: ChangeEvent<HTMLInputElement>): void {
-//     setMessage(e.target.value);
-//   }
-
-//   return (
-//     <Row px={1} py={0.5}>
-//       <InputBase
-//         value={message}
-//         onChange={handleMessageChange}
-//         fullWidth
-//         placeholder="메시지를 입력해주세요.."
-//         multiline
-//         maxRows={4}
-//         autoComplete="off"
-//       />
-//       <Fab
-//         size='small'
-//         color='primary'
-//         aria-label='send message'
-//       >
-//         <SendIcon fontSize='small'/>
-//       </Fab>
-//     </Row>
-//   );
-// }

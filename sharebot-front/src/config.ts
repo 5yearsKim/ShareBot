@@ -25,3 +25,10 @@ export const OAUTH_GOOGLE_ID =
   STAGE == "prod"
     ? "437876901404-r55qjole483bhvkmr3rqg00ce2qfgtck.apps.googleusercontent.com"
     : "127223269060-dtagat9oh7go8ieg0j0aj7289mdqe25p.apps.googleusercontent.com";
+
+
+export const BOT_INFO = {
+  thumbnail: "/images/panda.png",
+  name: "가십바오",
+  id: "gossip_bao",
+};
