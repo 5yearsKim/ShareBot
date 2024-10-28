@@ -8,7 +8,7 @@ export function GroupChatMainPage(): JSX.Element {
 
   return (
     <Box
-      height={`calc(100vh - ${NAV_HEIGHT}px)`}
+      height={`calc(100vh - ${NAV_HEIGHT}px - 60px)`}
     >
       <ChatBox />
     </Box>

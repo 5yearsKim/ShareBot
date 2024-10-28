@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import * as err from "@/errors";
 import { groupFileM } from "@/models/GroupFile";
-import {listGroupFile} from './fncs/list_group_file'
+import { listGroupFile } from "./fncs/list_group_file";
+import { deleteFile } from "@/utils/media";
 import type { GroupFileFormT, GroupFileT, ListGroupFileOptionT } from "@/types";
 
 @Injectable()
@@ -22,9 +23,13 @@ export class GroupFileService {
 
   async remove(id: idT): Promise<GroupFileT> {
     const removed = await groupFileM.deleteOne({ id });
+
     if (!removed) {
       throw new err.NotAppliedE();
     }
+
+    await deleteFile(removed.path);
+
     return removed;
   }
 }

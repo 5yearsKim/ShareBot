@@ -2,6 +2,9 @@
 import React, { useRef, } from "react";
 import * as GroupFileApi from "@/apis/group_files";
 import { Clickable } from "@/ui/tools/Clickable";
+import { Col, Gap } from "@/ui/layouts";
+import { Txt } from "@/ui/texts";
+import { AddIcon } from "@/ui/icons";
 import * as GroupApi from "@/apis/groups";
 import { useSnackbar } from "@/hooks/Snackbar";
 import { useMe } from "@/stores/UserStore";
@@ -58,15 +61,16 @@ export function CreateGroupFileButton(props: CreateGroupFileButtonProps): JSX.El
       const created = await GroupFileApi.create(form);
 
       onCreated(created);
+      enqueueSnackbar(`파일 ${created.name} 을 업로드했어요.`, { variant: "success" });
     } catch (e) {
       console.warn(e);
-      enqueueSnackbar("이미지를 업로드 할 수 없어요.", { variant: "error" });
+      enqueueSnackbar("파일을 업로드 할 수 없어요.", { variant: "error" });
     }
   }
 
 
   return (
-    <>
+    <div>
       <input
         ref={inputRef}
         hidden
@@ -78,15 +82,21 @@ export function CreateGroupFileButton(props: CreateGroupFileButtonProps): JSX.El
           e.target.value = null;
         }}
       />
-
       <Clickable
         onClick={handleCreateButtonClick}
+        width={200}
+        height={200}
+        bgcolor='paper.main'
+        borderRadius={2}
+        boxShadow={1}
       >
-        <div
-        >
-          + create file
-        </div>
+
+        <Col alignItems='center'>
+          <AddIcon fontSize='large' color='primary'/>
+          <Gap y={2}/>
+          <Txt color='vague.main'>파일 추가하기</Txt>
+        </Col>
       </Clickable>
-    </>
+    </div>
   );
 }

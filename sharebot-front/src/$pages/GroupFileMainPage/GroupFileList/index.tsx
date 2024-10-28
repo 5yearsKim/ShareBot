@@ -2,10 +2,14 @@
 import React, { useEffect, Fragment } from "react";
 import { useListData } from "@/hooks/ListData";
 import { LoadingBox, ErrorBox, LoadingIndicator } from "@/components/$statusTools";
+import { useAlertDialog } from "@/hooks/dialogs/ConfirmDialog";
+import { useSnackbar } from "@/hooks/Snackbar";
+import { GroupFileItem } from "@/components/GroupFileItem";
 import { Masonry } from "@mui/lab";
 import * as GroupFileApi from "@/apis/group_files";
 import { ViewObserver } from "@/ui/tools/ViewObserver";
 import { CreateGroupFileButton } from "./CreateGroupFileButton";
+import { buildImgUrl } from "@/utils/media";
 import type { GroupFileT, ListGroupFileOptionT } from "@/types";
 
 
@@ -13,6 +17,9 @@ export function GroupFileList(): JSX.Element {
   const { data: groupFiles$, actions: groupFilesAct } = useListData({
     listFn: GroupFileApi.list,
   });
+
+  const { showAlertDialog } = useAlertDialog();
+  const { enqueueSnackbar } = useSnackbar();
 
   const listOpt: ListGroupFileOptionT = {};
 
@@ -28,6 +35,30 @@ export function GroupFileList(): JSX.Element {
 
   function handleGroupFileCreated(groupFile: GroupFileT): void {
     groupFilesAct.splice(0, 0, groupFile);
+  }
+
+  function handleGroupFileClick(groupFile: GroupFileT): void {
+    const fileUrl = buildImgUrl(null, groupFile.path);
+    window.open(fileUrl, "_blank");
+  }
+
+  async function handleGroupFileDelete(groupFile: GroupFileT): Promise<void> {
+    const isOk = await showAlertDialog({
+      body: `파일 ${groupFile.name} 을 삭제하시겠어요?`,
+      useOk: true,
+      useCancel: true,
+    });
+    if (!isOk) {
+      return;
+    }
+    try {
+      const removed = await GroupFileApi.remove(groupFile.id);
+      enqueueSnackbar(`파일 ${removed.name} 을 삭제했어요.`, { variant: "success" });
+      groupFilesAct.filterItems((item) => (item.id == removed.id));
+    } catch (e) {
+      console.warn(e);
+      enqueueSnackbar(`파일 ${groupFile.name} 을 삭제할 수 없어요.`, { variant: "error" });
+    }
   }
 
 
@@ -51,8 +82,11 @@ export function GroupFileList(): JSX.Element {
 
       {groupFiles.map((groupFile) => (
         <Fragment key={groupFile.id}>
-          <p>{groupFile.name}</p>
-
+          <GroupFileItem
+            groupFile={groupFile}
+            onClick={() => handleGroupFileClick(groupFile)}
+            onDeleteClick={() => handleGroupFileDelete(groupFile)}
+          />
         </Fragment>
       ))}
 

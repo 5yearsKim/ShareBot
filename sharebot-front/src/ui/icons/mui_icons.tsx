@@ -30,6 +30,7 @@ import {
   ImageOutlined as ImageOlIcon,
   Chat as ChatIcon,
   Lock as LockIcon,
+  MoreVert as MoreIcon,
 } from "@mui/icons-material";
 
 export {
@@ -62,4 +63,5 @@ export {
   ImageOlIcon,
   ChatIcon,
   LockIcon,
+  MoreIcon,
 };
