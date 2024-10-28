@@ -113,7 +113,7 @@ class GroupRagger:
         """
         _generator = generator or self.generator
         prompt = f"""
-너의 이름은 셰어봇.
+너의 이름은 '셰어봇'.
 다음 원칙을 지켜줘.
 """
         prompt_rule: list[str] = [
@@ -143,7 +143,7 @@ class GroupRagger:
                 gossip_str = ""
                 for i, k in enumerate(knowledges):
                     gossip_str += f"{k.content}\n"
-                gossip_rule = f"그리고 {gossip_str} 이라는 가십을 활용해서 자연스럽게 대화 소재를 던져줘. \n\n"
+                gossip_rule = f"그리고 {gossip_str} 이라는 정보를 활용해서 자연스럽게 대화 소재를 던져줘. \n\n"
 
                 prompt_rule.append(gossip_rule)
 

@@ -20,6 +20,14 @@ def create_qdrant_collection(collection_name):
         collection_name=collection_name,
         vectors_config=VectorParams(size=1536, distance=Distance.COSINE)
     )
+
+    client.create_payload_index(
+        collection_name=collection_name,
+        field_name="name_of_the_field_to_index",
+        field_schema="keyword",
+    )
+
+
     print(f'Collection "{collection_name}" created successfully.')
 
 def main():

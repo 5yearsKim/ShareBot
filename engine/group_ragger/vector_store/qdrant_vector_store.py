@@ -47,10 +47,10 @@ class QdrantVectorStore(BaseVectorStore):
             with_vectors=with_vector,
             limit=limit,
             offset=offset,
-            order_by=OrderBy(
-                key="timestamp",
-                direction=Direction.ASC if order_by == "asc" else Direction.DESC,
-            ),
+            # order_by=OrderBy(
+            #     key="timestamp",
+            #     direction=Direction.ASC if order_by == "asc" else Direction.DESC,
+            # ),
         )
 
         return [PointFactory.from_qdrant(point, with_vector=False) for point in fetched], next_cursor  # type: ignore

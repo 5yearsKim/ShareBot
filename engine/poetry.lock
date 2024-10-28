@@ -742,12 +742,12 @@ files = [
 google-auth = ">=2.14.1,<3.0.dev0"
 googleapis-common-protos = ">=1.56.2,<2.0.dev0"
 grpcio = [
-    {version = ">=1.49.1,<2.0dev", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
     {version = ">=1.33.2,<2.0dev", optional = true, markers = "python_version < \"3.11\" and extra == \"grpc\""},
+    {version = ">=1.49.1,<2.0dev", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
 ]
 grpcio-status = [
-    {version = ">=1.49.1,<2.0.dev0", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
     {version = ">=1.33.2,<2.0.dev0", optional = true, markers = "python_version < \"3.11\" and extra == \"grpc\""},
+    {version = ">=1.49.1,<2.0.dev0", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
 ]
 protobuf = ">=3.19.5,<3.20.0 || >3.20.0,<3.20.1 || >3.20.1,<4.21.0 || >4.21.0,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4.21.4 || >4.21.4,<4.21.5 || >4.21.5,<5.0.0.dev0"
 requests = ">=2.18.0,<3.0.0.dev0"
@@ -1964,8 +1964,8 @@ files = [
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.23.2", markers = "python_version == \"3.11\""},
     {version = ">=1.22.4", markers = "python_version < \"3.11\""},
+    {version = ">=1.23.2", markers = "python_version == \"3.11\""},
     {version = ">=1.26.0", markers = "python_version >= \"3.12\""},
 ]
 python-dateutil = ">=2.8.2"
@@ -2532,19 +2532,19 @@ files = [
 
 [[package]]
 name = "qdrant-client"
-version = "1.8.0"
+version = "1.12.0"
 description = "Client library for the Qdrant vector search engine"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "qdrant_client-1.8.0-py3-none-any.whl", hash = "sha256:fa28d3eb64c0c57ec029c7c85c71f6c72c197f92502022655741f3632c518e29"},
-    {file = "qdrant_client-1.8.0.tar.gz", hash = "sha256:2a1a3f2cbacc7adba85644cf6cfdee20401cf25764b32da479c81fb63e178d15"},
+    {file = "qdrant_client-1.12.0-py3-none-any.whl", hash = "sha256:6db5ac1e244272f8b67e9dbc0da557816efef6f919cd8ee134469c751fe72c03"},
+    {file = "qdrant_client-1.12.0.tar.gz", hash = "sha256:f443db39988aa6ff7c7a605770084ddaca8fdb5f8b22f77c10e661bdf0974cda"},
 ]
 
 [package.dependencies]
 grpcio = ">=1.41.0"
 grpcio-tools = ">=1.41.0"
-httpx = {version = ">=0.14.0", extras = ["http2"]}
+httpx = {version = ">=0.20.0", extras = ["http2"]}
 numpy = [
     {version = ">=1.21", markers = "python_version >= \"3.8\" and python_version < \"3.12\""},
     {version = ">=1.26", markers = "python_version >= \"3.12\""},
@@ -2554,7 +2554,8 @@ pydantic = ">=1.10.8"
 urllib3 = ">=1.26.14,<3"
 
 [package.extras]
-fastembed = ["fastembed (==0.2.2)"]
+fastembed = ["fastembed (==0.3.6)"]
+fastembed-gpu = ["fastembed-gpu (==0.3.6)"]
 
 [[package]]
 name = "referencing"
