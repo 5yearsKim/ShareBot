@@ -7,7 +7,7 @@ import {
   ListGroupFileDto,
   CreateGroupFileDto,
 } from "./dtos";
-import * as err from "@/errors";
+// import * as err from "@/errors";
 import type * as R from "@/types/GroupFile.api";
 
 
@@ -33,7 +33,10 @@ export class GroupFileController {
 
     const text = await this.service.pdf2text(created.path);
 
-    await this.service.update(created.id, { content: text });
+    const updated = await this.service.update(created.id, { content: text });
+
+    await this.service.createFileToEngine(updated);
+
     return created;
   }
 
@@ -42,6 +45,7 @@ export class GroupFileController {
     @Param("id", ParseIntPipe) id: idT,
   ): Promise<R.DeleteRsp> {
     const deleted = await this.service.remove(id);
+    await this.service.deleteFileToEngine(deleted.id);
     return deleted;
   }
 }

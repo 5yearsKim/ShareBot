@@ -51,4 +51,18 @@ export class GroupFileService {
     const { text } = await EngineApi.docToText(file);
     return text;
   }
+
+  async createFileToEngine(groupFile: GroupFileT): Promise<any> {
+    const { points } = await EngineApi.createFile({
+      id: groupFile.id,
+      groupId: groupFile.group_id,
+      userId: groupFile.user_id ?? -1,
+      content: groupFile.content ?? "",
+    });
+    return points;
+  }
+
+  async deleteFileToEngine(id: idT): Promise<void> {
+    await EngineApi.deleteFile({ id });
+  }
 }

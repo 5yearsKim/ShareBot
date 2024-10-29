@@ -32,7 +32,6 @@ export async function deleteKnowledge(
 ): Promise<any> {
   const rsp = await engine.delete(`/knowledge/${opt.id}`);
   return rsp.data;
-
 }
 
 export function botTriggerStream(
@@ -79,5 +78,31 @@ export async function docToText(file: File): Promise<{text: string}> {
   formData.append("file", file);
 
   const rsp = await engine.post("/doc/to_text", formData);
+  return rsp.data;
+}
+
+export async function createFile(
+  opt: {
+    id: idT,
+    groupId: idT,
+    userId: idT,
+    content: string,
+  }
+): Promise<any> {
+  const rsp = await engine.post("/file", {
+    id: opt.id,
+    group_id: opt.groupId,
+    user_id: opt.userId,
+    content: opt.content,
+  });
+  return rsp.data;
+}
+
+export async function deleteFile(
+  opt: {
+    id: idT,
+  }
+): Promise<any> {
+  const rsp = await engine.delete(`/file/${opt.id}`);
   return rsp.data;
 }
