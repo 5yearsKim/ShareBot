@@ -1,6 +1,6 @@
 import { PaletteMode } from "@mui/material";
 import { createTheme, ThemeOptions, responsiveFontSizes, Theme } from "@mui/material/styles";
-import { yellow, green, lightBlue, red, amber, grey } from "@mui/material/colors";
+import { yellow, green, purple, red, amber, grey } from "@mui/material/colors";
 import { notoSansKr } from "@/ui/systems/fonts";
 // import { darkScrollbar } from '@mui/material';
 
@@ -8,7 +8,7 @@ import { notoSansKr } from "@/ui/systems/fonts";
 const getDesign = (mode: PaletteMode): ThemeOptions => ({
   palette: {
     mode: mode,
-    primary: mode == "dark" ? { main: lightBlue["A200"] } : { main: lightBlue[400] },
+    primary: mode == "dark" ? { main: purple["A200"] } : { main: purple[400] },
     secondary: {
       main: red[500],
     },

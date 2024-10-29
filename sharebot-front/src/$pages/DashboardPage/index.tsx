@@ -3,11 +3,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { TextField, InputAdornment, Button } from "@mui/material";
+import { TextField, InputAdornment, Button, Divider } from "@mui/material";
 import { Navbar } from "@/components/Navbar";
 import { NAV_HEIGHT } from "@/ui/global";
 import { NavbarLayout } from "@/components/$layouts/NavbarLayout";
-import { useSnackbar } from "@/hooks/Snackbar";
 import { Container, Gap, Box, Row } from "@/ui/layouts";
 import { SearchIcon, AddIcon } from "@/ui/icons";
 import { Txt } from "@/ui/texts";
@@ -36,6 +35,10 @@ export function DashboardPage() {
 
         <Gap y={2} />
 
+        <Divider/>
+
+        <Gap y={2} />
+
         <Txt variant='h5'>내 프로젝트 </Txt>
 
         <Gap y={2} />
@@ -51,6 +54,10 @@ export function DashboardPage() {
               <Button
                 variant="contained"
                 startIcon={<AddIcon/>}
+                size='large'
+                sx={{
+                  borderRadius: 8,
+                }}
               >
                 프로젝트 만들기
               </Button>

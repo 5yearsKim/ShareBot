@@ -6,7 +6,9 @@ import { Txt } from "@/ui/texts";
 import { NAV_HEIGHT } from "@/ui/global";
 import { Navbar } from "@/components/Navbar";
 import { NavbarLayout } from "@/components/$layouts/NavbarLayout";
+import { aggro } from "@/ui/systems/fonts";
 import { StartButton } from "./StartButton";
+import { TypingText } from "./TypingText";
 
 type LandingPageProps = {
   redirectGroupKey?: string
@@ -19,35 +21,49 @@ export function LandingPage({ redirectGroupKey }: LandingPageProps): JSX.Element
       navbar={<Navbar />}
       height={NAV_HEIGHT}
     >
-      <Container>
-        <Col alignItems='center'>
+      <Box sx={{
+        minHeight: "100vh",
+        background: "linear-gradient(30deg, #ddddff, #ffffff, #ffffff, #ffffff, #ffdddd)"
+      }}>
+        <Container>
+          <Col alignItems='center'>
 
-          <Gap y={10}/>
+            <Gap y={10}/>
 
-          <Txt
-            variant='h2'
-            textAlign='center'
-            sx={{ wordBreak: "keep-all" }}
-          >
-            Sample Text
-          </Txt>
+            <Txt
+              variant='h2'
+              textAlign='center'
+              fontFamily={aggro.style.fontFamily}
+              sx={{
+                wordBreak: "keep-all",
+                background: "linear-gradient(180deg, #FF7E5F, #FEB47B, #86A8E7)",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
 
-          <Gap y={4}/>
+              }}
+            >
+              <div color="primary.main">셰어봇,</div> 문서 공유형 챗봇
+            </Txt>
 
 
-          <Gap y={4}/>
+            <Gap y={4}/>
 
-          <StartButton/>
-          {/* {redirectGroupKey ? (
+            <TypingText/>
+
+            <Gap y={4}/>
+
+            <StartButton/>
+            {/* {redirectGroupKey ? (
             <GroupStartButton groupKey={redirectGroupKey}/>
           ) : (
             <StartButton/>
           )} */}
 
-          <Gap y={12}/>
+            <Gap y={12}/>
 
-        </Col>
-      </Container>
+          </Col>
+        </Container>
+      </Box>
     </NavbarLayout>
   );
 }

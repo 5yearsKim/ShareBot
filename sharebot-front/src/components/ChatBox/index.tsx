@@ -16,7 +16,7 @@ import { setMainAiChatEv } from "@/system/global_events";
 import { ThinkingIndicator } from "./ThinkingIndicator";
 import { ChatInput, type ChatInputT } from "./ChatInput";
 import { AiMessageList, type AiMessageListT } from "./AiMessageList";
-import { AiHelper } from "./AiHelper";
+// import { AiHelper } from "./AiHelper";
 import type { AiChatT, AiMessageT, AiMessageFormT } from "@/types";
 
 
@@ -235,7 +235,7 @@ export function ChatContent({ chat }: ChatContentProps): JSX.Element {
 
       <Gap y={1}/>
 
-      <AiHelper/>
+      {/* <AiHelper/> */}
 
       <Gap y={1}/>
 

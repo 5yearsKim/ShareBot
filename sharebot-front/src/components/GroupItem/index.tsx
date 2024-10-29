@@ -16,7 +16,7 @@ export function GroupItem({ group }: GroupItemProps): JSX.Element {
   return (
     <Col alignItems='start'>
       <Row width='100%'>
-        <GroupAvatar group={group} size={36}/>
+        <GroupAvatar group={group} size={50}/>
         <Gap x={1.5}/>
         <Col>
           <EllipsisTxt
@@ -40,8 +40,8 @@ export function GroupItem({ group }: GroupItemProps): JSX.Element {
           ))}
         </Row>
       </Row>
-      <Gap y={1.25}/>
-      <Txt variant="body2">{group.description ?? "(설명 없음)"}</Txt>
+      <Gap y={2}/>
+      <Txt variant="body1">{group.description ?? "(설명 없음)"}</Txt>
     </Col>
   );
 }
@@ -58,7 +58,7 @@ export function GroupItemCard({
 }: GroupItemCardProps): ReactNode {
   return (
     <Card sx={{ borderRadius: 3, boxShadow: 1 }}>
-      <CardActionArea sx={{ py: 1.5, px: 2 }} onClick={onClick}>
+      <CardActionArea sx={{ py: 2, px: 2 }} onClick={onClick}>
         {children}
       </CardActionArea>
     </Card>

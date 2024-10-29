@@ -25,7 +25,9 @@ export function StartButton(): JSX.Element {
       size='large'
       variant='contained'
       sx={{
-        borderRadius: 8
+        minWidth: 200,
+        minHeight: 40,
+        borderRadius: 18
       }}
       onClick={onStartClick}
     >

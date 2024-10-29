@@ -54,7 +54,7 @@ export function GroupFileList(): JSX.Element {
     try {
       const removed = await GroupFileApi.remove(groupFile.id);
       enqueueSnackbar(`파일 ${removed.name} 을 삭제했어요.`, { variant: "success" });
-      groupFilesAct.filterItems((item) => (item.id == removed.id));
+      groupFilesAct.filterItems((item) => (item.id !== removed.id));
     } catch (e) {
       console.warn(e);
       enqueueSnackbar(`파일 ${groupFile.name} 을 삭제할 수 없어요.`, { variant: "error" });

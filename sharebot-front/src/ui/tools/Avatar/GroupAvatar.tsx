@@ -15,7 +15,7 @@ export function GroupAvatar({
   return (
     <Avatar
       variant="rounded"
-      src={group.avatar_path ? buildImgUrl(null, group.avatar_path) : "/images/anonymous_panda.png"}
+      src={group.avatar_path ? buildImgUrl(null, group.avatar_path) : "/images/sharebot.png"}
       sx={{
         width: size,
         height: size,
