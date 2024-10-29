@@ -30,6 +30,10 @@ export class GroupFileController {
   ): Promise<R.CreateRsp> {
     body satisfies R.CreateRqs;
     const created = await this.service.create(body.form);
+
+    const text = await this.service.pdf2text(created.path);
+
+    await this.service.update(created.id, { content: text });
     return created;
   }
 
@@ -40,6 +44,4 @@ export class GroupFileController {
     const deleted = await this.service.remove(id);
     return deleted;
   }
-
-
 }

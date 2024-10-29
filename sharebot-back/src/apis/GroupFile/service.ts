@@ -1,8 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import * as err from "@/errors";
 import { groupFileM } from "@/models/GroupFile";
 import { listGroupFile } from "./fncs/list_group_file";
-import { deleteFile } from "@/utils/media";
+import { deleteFile, getFile } from "@/utils/media";
+import * as EngineApi from "@/engine/apis";
+import * as err from "@/errors";
 import type { GroupFileFormT, GroupFileT, ListGroupFileOptionT } from "@/types";
 
 @Injectable()
@@ -21,6 +22,15 @@ export class GroupFileService {
     return await listGroupFile(listOpt);
   }
 
+  async update(id: idT, form: Partial<GroupFileFormT>): Promise<GroupFileT> {
+    const updated = await groupFileM.updateOne({ id }, form);
+    if (!updated) {
+      throw new err.NotAppliedE();
+    }
+    return updated;
+  }
+
+
   async remove(id: idT): Promise<GroupFileT> {
     const removed = await groupFileM.deleteOne({ id });
 
@@ -31,5 +41,14 @@ export class GroupFileService {
     await deleteFile(removed.path);
 
     return removed;
+  }
+
+  async pdf2text(pdfKey: string): Promise<string> {
+    const pdfBlob = await getFile(pdfKey);
+
+    const file = new File([pdfBlob], "document.pdf", { type: "application/pdf" });
+
+    const { text } = await EngineApi.docToText(file);
+    return text;
   }
 }

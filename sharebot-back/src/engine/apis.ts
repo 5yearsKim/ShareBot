@@ -73,3 +73,11 @@ export function botRespondStream(
   // console.log('stream:', body);
   return engine.post("/bot/respond", body, { responseType: "stream", timeout: 20 * 1000 });
 }
+
+export async function docToText(file: File): Promise<{text: string}> {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const rsp = await engine.post("/doc/to_text", formData);
+  return rsp.data;
+}
