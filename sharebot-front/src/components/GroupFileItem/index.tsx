@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import { Box, Gap, Col, Row } from "@/ui/layouts";
-import { Clickable } from "@/ui/tools/Clickable";
+import { Box, Gap, Col, Expand, Row } from "@/ui/layouts";
+import { EllipsisTxt } from "@/ui/texts";
+import { MoreIcon, DeleteOlIcon, UnfoldIcon } from "@/ui/icons";
 import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
-import { MoreIcon, DeleteOlIcon } from "@/ui/icons";
 
 import type { GroupFileT } from "@/types";
 
@@ -11,6 +11,7 @@ type GroupFileItemProps = {
   groupFile: GroupFileT
   onClick?: () => any
   onDeleteClick?: () => any
+  onTextViewClick?: () => any
 }
 
 export function GroupFileItem(props: GroupFileItemProps): JSX.Element {
@@ -18,6 +19,7 @@ export function GroupFileItem(props: GroupFileItemProps): JSX.Element {
     groupFile,
     onClick,
     onDeleteClick,
+    onTextViewClick,
   } = props;
 
   const [menuEl, setMenuEl] = useState<HTMLElement|null>(null);
@@ -43,13 +45,22 @@ export function GroupFileItem(props: GroupFileItemProps): JSX.Element {
     }
   }
 
+  function handleTextViewClick(e: React.MouseEvent): void {
+    e.preventDefault();
+    e.stopPropagation();
+    setMenuEl(null);
+    if (onTextViewClick) {
+      onTextViewClick();
+    }
+  }
+
   return (
     <Box
       bgcolor='paper.main'
       borderRadius={2}
       boxShadow={2}
-      py={2}
-      px={1}
+      py={1}
+      px={2}
       onClick={onClick}
       sx={{
         cursor: "pointer"
@@ -66,8 +77,11 @@ export function GroupFileItem(props: GroupFileItemProps): JSX.Element {
           height={80}
         />
         <Gap y={1}/>
-        <Row>
-          {groupFile.name}
+        <Row width='100%'>
+          <EllipsisTxt maxLines={1}>
+            {groupFile.name}
+          </EllipsisTxt>
+          <Expand/>
           <IconButton
             onClick={handleMoreClick}
           >
@@ -86,6 +100,15 @@ export function GroupFileItem(props: GroupFileItemProps): JSX.Element {
           </ListItemIcon>
           <ListItemText>
             삭제
+          </ListItemText>
+        </MenuItem>
+
+        <MenuItem onClick={handleTextViewClick}>
+          <ListItemIcon>
+            <UnfoldIcon/>
+          </ListItemIcon>
+          <ListItemText>
+            텍스트 보기
           </ListItemText>
         </MenuItem>
       </Menu>

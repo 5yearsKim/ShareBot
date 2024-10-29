@@ -5,14 +5,18 @@ import { Tabs, Tab } from "@mui/material";
 
 import { GroupFileMainPage } from "@/$pages/GroupFileMainPage";
 import { GroupChatMainPage } from "@/$pages/GroupChatMainPage";
+import { useGroup$, useGroupActions } from "@/stores/GroupStore";
 
 
 export default function GroupMain() {
-  const [tab, setTab] = useState<number>(0);
+  const group$ = useGroup$();
+  const groupAct = useGroupActions();
 
   function handleTabChange(e: React.SyntheticEvent, value: number): void {
-    setTab(value);
+    groupAct.patchData({ tab: value });
   }
+
+  const tab = group$.data?.tab ?? 0;
 
   return (
     <div>

@@ -28,8 +28,8 @@ export function CreateGroupFileButton(props: CreateGroupFileButtonProps): JSX.El
 
 
   function handleCreateButtonClick(e: React.MouseEvent<HTMLElement>): void {
-    e.preventDefault();
-    e.stopPropagation();
+    // e.preventDefault();
+    // e.stopPropagation();
     if (!inputRef) {
       return;
     }
@@ -70,7 +70,15 @@ export function CreateGroupFileButton(props: CreateGroupFileButtonProps): JSX.El
 
 
   return (
-    <div>
+    <Clickable
+      onClick={handleCreateButtonClick}
+      // width={200}
+      height={145}
+      bgcolor='paper.main'
+      borderRadius={2}
+      boxShadow={1}
+    >
+
       <input
         ref={inputRef}
         hidden
@@ -82,21 +90,11 @@ export function CreateGroupFileButton(props: CreateGroupFileButtonProps): JSX.El
           e.target.value = null;
         }}
       />
-      <Clickable
-        onClick={handleCreateButtonClick}
-        width={200}
-        height={200}
-        bgcolor='paper.main'
-        borderRadius={2}
-        boxShadow={1}
-      >
-
-        <Col alignItems='center'>
-          <AddIcon fontSize='large' color='primary'/>
-          <Gap y={2}/>
-          <Txt color='vague.main'>파일 추가하기</Txt>
-        </Col>
-      </Clickable>
-    </div>
+      <Col alignItems='center'>
+        <AddIcon fontSize='large' color='primary'/>
+        <Gap y={2}/>
+        <Txt color='vague.main'>파일 추가하기</Txt>
+      </Col>
+    </Clickable>
   );
 }

@@ -12,8 +12,8 @@ import { STAGE, FRONT_URL } from "@/config";
 import "@/ui/global.scss";
 
 
-const title = "가십바오, 가십거리 좋아하는 AI 챗봇";
-const description = "Gossip bao, 우리 조직 가십 이야기 나눠줄 AI 챗봇";
+const title = "셰어봇, 공유 문서 기반 챗봇 플랫폼 ";
+const description = "셰어봇을 통해 문서를 업로드 하고 챗봇을 만드세요.";
 
 export const metadata: Metadata = {
   title,

@@ -28,7 +28,7 @@ export const OAUTH_GOOGLE_ID =
 
 
 export const BOT_INFO = {
-  thumbnail: "/images/panda.png",
-  name: "가십바오",
-  id: "gossip_bao",
+  thumbnail: "/images/sharebot.png",
+  name: "셰어봇",
+  id: "sharebot",
 };

@@ -61,6 +61,14 @@ export function GroupFileList(): JSX.Element {
     }
   }
 
+  async function handleGroupFileTextView(groupFile: GroupFileT): Promise<void> {
+    await showAlertDialog({
+      title: groupFile.name,
+      body: groupFile.content ?? "내용이 없습니다.",
+      useOk: true,
+    });
+  }
+
 
   const { status, data: groupFiles, appendingStatus } = groupFiles$;
 
@@ -86,6 +94,7 @@ export function GroupFileList(): JSX.Element {
             groupFile={groupFile}
             onClick={() => handleGroupFileClick(groupFile)}
             onDeleteClick={() => handleGroupFileDelete(groupFile)}
+            onTextViewClick={() => handleGroupFileTextView(groupFile)}
           />
         </Fragment>
       ))}

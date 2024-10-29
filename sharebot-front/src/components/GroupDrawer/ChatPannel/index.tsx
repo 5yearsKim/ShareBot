@@ -16,6 +16,7 @@ import { AddIcon } from "@/ui/icons";
 import { vizTime } from "@/utils/time";
 import { LoadingIndicator } from "@/components/$statusTools";
 import { setMainAiChatEv } from "@/system/global_events";
+import { useGroupActions } from "@/stores/GroupStore";
 import { CreateChatWrapper } from "./CreateChatWrapper";
 import type { AiChatT, ListAiChatOptionT } from "@/types";
 
@@ -33,6 +34,7 @@ export function ChatPannel({
 }: ChatPannelProps): JSX.Element {
   const me = useMe();
   const mainAiChat$ = useMainAiChat$();
+  const groupAct = useGroupActions();
   const { downSm } = useResponsive();
 
   const { data: aiChats$, actions: aiChatsAct } = useListData({
@@ -57,6 +59,7 @@ export function ChatPannel({
   function handleSelectChat(chat: AiChatT): void {
     setMainAiChatEv.emit(chat);
     closeDrawer();
+    groupAct.patchData({ tab: 1 });
   }
 
 

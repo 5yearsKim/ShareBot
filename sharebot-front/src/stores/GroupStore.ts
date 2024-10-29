@@ -6,6 +6,7 @@ import * as GroupApi from "@/apis/groups";
 
 type GroupDataT = {
   group: GroupT
+  tab: number
 }
 
 interface GroupStateT {
@@ -48,7 +49,7 @@ export function useGroupActions() {
     try {
       patch({ status: "loading" });
       const { data: group } = await GroupApi.getByKey(key, { $tags: true, $secret: true });
-      patch({ status: "loaded", data: { group } });
+      patch({ status: "loaded", data: { group, tab: 0 } });
       if (opt?.onSuccess) {
         opt.onSuccess(group);
       }
