@@ -16,7 +16,7 @@ class BaseVectorStore(ABC):
     def get_many(
         self,
         group_id: int | None = None,
-        knowledge_id: int | None = None,
+        file_id: int | None = None,
         limit: int = 30,
         offset: str | None = None,
         with_vector: bool = False,

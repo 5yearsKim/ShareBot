@@ -24,7 +24,7 @@ class QdrantVectorStore(BaseVectorStore):
     def get_many(
         self,
         group_id: int | None = None,
-        knowledge_id: int | None = None,
+        file_id: int | None = None,
         limit: int = 30,
         offset: str | None = None,
         with_vector: bool = False,
@@ -36,9 +36,9 @@ class QdrantVectorStore(BaseVectorStore):
             must_filter.append(
                 FieldCondition(key="group_id", match=MatchValue(value=group_id))
             )
-        if knowledge_id is not None:
+        if file_id is not None:
             must_filter.append(
-                FieldCondition(key="knowledge_id", match=MatchValue(value=knowledge_id))
+                FieldCondition(key="file_id", match=MatchValue(value=file_id))
             )
 
         fetched, next_cursor = self.client.scroll(

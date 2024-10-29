@@ -31,7 +31,6 @@ GeneratorT = Literal["openai", "claude", "gemini"]
 
 doc_cvt = DocConverter()
 
-
 def get_generator(generator_type: GeneratorT | None) -> BaseGenerator | None:
     if generator_type == "openai":
         return openai_generator
@@ -71,37 +70,37 @@ async def get_knowledge(
     return ListKnowledgeRsp(points=retrieved, next_cursor=next_cursor)
 
 
-class CreateKnowledgeBody(BaseModel):
+class CreateFileBody(BaseModel):
     id: int | None = None
     content: str
     group_id: int
     user_id: int | None = None
 
 
-class CreateKnowledgeRsp(BaseModel):
+class CreateFileRsp(BaseModel):
     success: bool
     points: list[Point]
 
 
-@app.post("/knowledge", response_model=CreateKnowledgeRsp)
-async def create_knowledge(body: CreateKnowledgeBody) -> CreateKnowledgeRsp:
+@app.post("/file", response_model=CreateFileRsp)
+async def create_knowledge(body: CreateFileBody) -> CreateFileRsp:
 
     points = ragger.memorize(
-        body.content, body.group_id, user_id=body.user_id, knowledge_id=body.id
+        body.content, body.group_id, user_id=body.user_id, file_id=body.id
     )
 
-    return CreateKnowledgeRsp(success=True, points=points)
+    return CreateFileRsp(success=True, points=points)
 
 
-class DeleteKnowledgeRsp(BaseModel):
+class DeleteFileRsp(BaseModel):
     success: bool
     points: list[Point]
 
 
-@app.delete("/knowledge/{knowledge_id}", response_model=DeleteKnowledgeRsp)
-async def delete_knowledge(knowledge_id: int) -> DeleteKnowledgeRsp:
-    points = ragger.forget(knowledge_id)
-    return DeleteKnowledgeRsp(success=True, points=points)
+@app.delete("/file/{file_id}", response_model=DeleteFileRsp)
+async def delete_knowledge(file_id: int) -> DeleteFileRsp:
+    points = ragger.forget(file_id)
+    return DeleteFileRsp(success=True, points=points)
 
 
 class RespondBody(BaseModel):

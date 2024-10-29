@@ -162,15 +162,14 @@ class GroupRagger:
         content: str,
         group_id: int,
         user_id: int | None = None,
-        knowledge_id: int | None = None,
+        file_id: int | None = None,
     ) -> list[Point]:
         chunks = self.text_splitter.split_text(content)
 
         vectors = self.embedder.encode(chunks)
 
-        # check if the vectors with knowledge_id already exists or not
-        if knowledge_id:
-            self.forget(knowledge_id)
+        if file_id:
+            self.forget(file_id)
 
         points = [
             Point(
@@ -178,7 +177,7 @@ class GroupRagger:
                 vector=vector,
                 content=chunk,
                 group_id=group_id,
-                meta={"user_id": user_id, "knowledge_id": knowledge_id},
+                meta={"user_id": user_id, "file_id": file_id},
             )
             for vector, chunk in zip(vectors, chunks)
         ]
@@ -186,8 +185,8 @@ class GroupRagger:
         self.vector_store.upsert_many(points)
         return points
 
-    def forget(self, knowledge_id: int) -> list[Point]:
-        points, _ = self.vector_store.get_many(knowledge_id=knowledge_id)
+    def forget(self, file_id: int) -> list[Point]:
+        points, _ = self.vector_store.get_many(file_id=file_id)
         if points:
             self.vector_store.delete_many([point.id for point in points])
         return points
