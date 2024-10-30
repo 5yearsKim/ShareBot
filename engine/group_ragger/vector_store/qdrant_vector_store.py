@@ -1,8 +1,14 @@
 from typing import Any, Literal
 
 from qdrant_client import QdrantClient
-from qdrant_client.http.models import (Direction, FieldCondition, Filter,
-                                       MatchValue, OrderBy, PointIdsList)
+from qdrant_client.http.models import (
+    Direction,
+    FieldCondition,
+    Filter,
+    MatchValue,
+    OrderBy,
+    PointIdsList,
+)
 
 from ..schema import Point, PointFactory, ScoredPoint
 from .base import BaseVectorStore

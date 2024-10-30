@@ -1,5 +1,4 @@
 import logging
-import random
 from typing import Iterable
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -83,8 +82,8 @@ class GroupRagger:
 
             guide = f"""
 너의 이름은 '셰어봇', 다음 원칙들을 지켜서 대답해줘.
-1. 유저들에게는 인터넷 커뮤 말투를 써서 항상 반말로 대답해줘. ~다 로 끝나는 문장은 ~야 로 바꿔줘.
-2. 유저가 물어보는 질문에는 다음 정보 중 가장 정확한 정보를 기반으로 재밌게 꾸며서 대답해줘. 질문에 해당하는 정보가 없으면 모른다고 대답해줘.
+1. 유저들에게는 공손하게 대답해줘.
+2. 유저가 물어보는 질문에는 다음 정보 중 가장 정확한 정보를 기반으로 대답해줘. 질문에 해당하는 정보가 없으면 모른다고 대답해줘.
 정보: {" / ".join(infos)}
             """
             # 3. 답변은 너무 길지 않게 해줘. (최대 80자)
@@ -95,7 +94,7 @@ class GroupRagger:
         else:
             prompt = """
 너의 이름은 '셰어봇'. 다음 원칙들을 지켜서 대답해줘..
-1. 유저들에게는 항상 반말로 대답해줘.
+1. 유저들에게는 항상 공손하게 대답해줘.
 2. 답변은 너무 길지 않게 간결하게.
             """
             messages.insert(0, Message(role=MessageRole.SYSTEM, content=prompt))
@@ -116,36 +115,14 @@ class GroupRagger:
 너의 이름은 '셰어봇'.
 다음 원칙을 지켜줘.
 """
-        prompt_rule: list[str] = [
-            "유저들에게는 항상 반말로 대답해줘."
-        ]
+        prompt_rule: list[str] = ["유저들에게는 공손하게 대답해줘."]
 
         if len(messages) == 0:
             prompt_rule.append(
-                "대화를 시작하는 단계이니 유저한테 반갑게 인사하고 어떤 대화 하고 싶냐고 물어줘."
+                "대화를 시작하는 단계이니 유저한테 인사 하고 어떤 것이 궁금하냐고 물어줘."
             )
         else:
             prompt_rule.append("문맥을 고려하되 유저와의 대화를 새로 시작해줘")
-
-        # on average, 60% of the time, the bot will start with gossip
-        if random.uniform(0, 1) < gossip_ratio:
-            knowledges, _ = self.vector_store.get_many(
-                group_id=group.id, limit=20, order_by="desc"
-            )
-
-            self.logger.info("knowledges: %s", knowledges)
-
-            gossip_k = 1
-            if len(knowledges) > gossip_k:
-                knowledges = random.choices(knowledges, k=gossip_k)
-
-            if len(knowledges) > 0:
-                gossip_str = ""
-                for i, k in enumerate(knowledges):
-                    gossip_str += f"{k.content}\n"
-                gossip_rule = f"그리고 {gossip_str} 이라는 정보를 활용해서 자연스럽게 대화 소재를 던져줘. \n\n"
-
-                prompt_rule.append(gossip_rule)
 
         # prompt concat
         for i, rule in enumerate(prompt_rule):
