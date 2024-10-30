@@ -1,0 +1,7 @@
+.data
+.venv
+__pycache__
+.venv
+.env
+streamlit_app/
+assets/

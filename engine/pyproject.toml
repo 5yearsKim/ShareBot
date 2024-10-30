@@ -18,8 +18,8 @@ requests = "^2.31.0"
 sseclient-py = "^1.8.0"
 qdrant-client = "^1.12.0"
 logging = "^0.4.9.6"
-fastapi = {extras = ["standard"], version = "^0.115.3"}
 pymupdf = "^1.24.12"
+fastapi = {extras = ["standard"], version = "^0.115.4"}
 
 
 [tool.poetry.group.dev.dependencies]
