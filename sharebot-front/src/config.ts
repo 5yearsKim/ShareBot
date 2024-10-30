@@ -10,14 +10,14 @@ export const [API_URL, SOCKET_URL] = ((): [string, string] => {
   } else {
     // dev
     if (fromLocal) {
-      return ["http://localhost:6021", ""];
+      return ["http://localhost:6020", ""];
     } else {
       return ["http://thisis.wrong.address", ""];
     }
   }
 })();
 
-export const FRONT_URL = "gossipbao.com";
+export const FRONT_URL = "sharebot.site";
 
 export const RESOURCE_URL = "https://resources.nonimos.com";
 

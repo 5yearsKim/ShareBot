@@ -25,8 +25,9 @@ export type GetGroupFileOptionT = {
 }
 
 export type ListGroupFileOptionT = {
-    limit?: number | undefined;
-    cursor?: string | undefined;
-    userId?: number | undefined;
-    groupId?: number | undefined;
+    limit?: (number | undefined) | undefined;
+    cursor?: (string | undefined) | undefined;
+    userId?: (number | undefined) | undefined;
+    groupId?: (number | undefined) | undefined;
+    sort?: ("recent" | "old") | undefined;
 }

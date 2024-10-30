@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { Box, Button } from "@mui/material";
 import { Txt } from "@/ui/texts";
-import { useAccount} from "@/stores/AccountStore";
+import { useAccount } from "@/stores/AccountStore";
 import { useLoginDialog } from "@/hooks/dialogs/LoginDialog";
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker run --env-file ./.env \
-  -d -p 5010:5010 \
-  --name gossip-back \
-  --add-host=host.docker.internal:host-gateway \
-  onionkim/gossip-back
+docker run --rm \
+  --env-file ./.env.docker \
+  --name sharebot-back \
+  -p 6020:6020 \
+  onionkim/sharebot-back:1.0

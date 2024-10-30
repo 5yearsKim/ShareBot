@@ -6,7 +6,7 @@ export function TypingText() {
   return (
     <TypeAnimation
       sequence={[
-        "복잡한 pdf 문서를 그저 업로드 하는 것으로 충분해요. \n AI가 모두 이해해서 처리해줄거에요.",
+        "복잡한 pdf 문서를 업로드 하는 것으로 충분해요. \n AI가 모두 이해해서 처리해줄거에요.",
         1000,
         "",
         // "복잡한 pdf 문서를 그저 업로드 하는 것으로 충분해요. AI가 모두 이해해서 처리해줄거에요.",

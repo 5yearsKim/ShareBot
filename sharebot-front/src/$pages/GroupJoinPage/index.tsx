@@ -54,7 +54,7 @@ export function GroupJoinPage(): JSX.Element {
     <Container rtlP>
       <Col alignItems='center' maxWidth={450} m='auto'>
 
-        <Txt variant='h6'>그룹 {group.name} 에 가입하고 가십바오와 대화할까요?</Txt>
+        <Txt variant='h6'>그룹 {group.name} 에 가입하고 셰어봇과 대화할까요?</Txt>
 
         <Gap y={2}/>
 
@@ -76,8 +76,7 @@ export function GroupJoinPage(): JSX.Element {
 
         <Col>
           <ul>
-            <li>가십바오와 나눈 대화는 가십바오 학습에 활용될 수 있어요.</li>
-            <li>{`내가 추가한 정보는 나만 확인할 수 있지만 가십바오를 통해 \"${group.name}\" 구성원들에게 전달될 수 있어요.`}</li>
+            <li>셰어봇과 나눈 대화는 셰어봇 학습에 활용될 수 있어요.</li>
           </ul>
         </Col>
 

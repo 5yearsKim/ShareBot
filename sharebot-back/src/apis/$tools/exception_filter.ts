@@ -89,6 +89,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       httpAdapter.reply(rsp, responseBody, status);
     }
     else {
+      console.warn(e);
       const status = HttpStatus.INTERNAL_SERVER_ERROR;
       const responseBody = {
         statusCode: status,
@@ -100,6 +101,5 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
       httpAdapter.reply(rsp, responseBody, status);
     }
-
   }
 }

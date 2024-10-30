@@ -8,7 +8,7 @@ import {
 import { MDrawer } from "@/components/GroupDrawer";
 import { NAV_HEIGHT } from "@/ui/global";
 import { Col } from "@/ui/layouts";
-import {HomeIcon} from '@/ui/icons'
+import { HomeIcon } from "@/ui/icons";
 import P from "path";
 
 export function AdminDrawer(): JSX.Element {

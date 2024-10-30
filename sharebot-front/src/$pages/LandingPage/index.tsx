@@ -48,7 +48,33 @@ export function LandingPage({ redirectGroupKey }: LandingPageProps): JSX.Element
 
             <Gap y={4}/>
 
-            <TypingText/>
+            <Box minHeight={140}>
+              <TypingText/>
+            </Box>
+
+
+            <Gap y={4}/>
+
+            <Box
+              width='100%'
+              height='100%'
+              position='relative'
+              overflow='hidden'
+              borderRadius={8}
+              boxShadow='0px 4px 10px rgba(0, 0, 0, 0.3)'
+
+            >
+              <img
+                src='./images/sample_chat.png'
+                alt='sample chat'
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+
+              />
+            </Box>
 
             <Gap y={4}/>
 

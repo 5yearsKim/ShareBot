@@ -42,7 +42,7 @@ def get_generator(generator_type: GeneratorT | None) -> BaseGenerator | None:
 
 
 ragger = GroupRagger(
-    generator=claude_generator,
+    generator=openai_generator,
     embedder=embedder,
     vector_store=vector_store,
     checker=checker,

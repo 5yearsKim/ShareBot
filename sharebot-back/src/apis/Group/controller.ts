@@ -136,7 +136,7 @@ export class GroupController {
   async uploadFile(
     @UploadedFile() file: Express.Multer.File,
     @User() user: UserT,
-  ): Promise<R.UploadThumbnailRsp> {
+  ): Promise<R.UploadFileRsp> {
 
     if (!file) {
       throw new err.InvalidFieldE("file should be given as form-data");

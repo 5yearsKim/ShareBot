@@ -3,7 +3,7 @@ import { useRecoilState, atom } from "recoil";
 
 const drawerCands = ["main"];
 
-type NavbarDrawerStateT = "main" | 'admin' | undefined;
+type NavbarDrawerStateT = "main" | "admin" | undefined;
 
 const drawerState = atom<NavbarDrawerStateT>({
   key: "drawer",
@@ -16,7 +16,7 @@ export function useNavbarDrawer() {
 
 
   const mainOpen = drawer === "main";
-  const adminOpen = drawer === 'admin';
+  const adminOpen = drawer === "admin";
 
 
   function openDrawer(state: NavbarDrawerStateT): void {

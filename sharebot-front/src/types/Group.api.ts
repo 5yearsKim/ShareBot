@@ -27,3 +27,7 @@ export type UploadThumbnailRsp = {key: string}
 // (DELETE) /thumbnail
 export type DeleteThumbnailRqs = {key: string}
 export type DeleteThumbnailRsp = null
+
+// (POST) /file
+export type UploadFileRqs = null
+export type UploadFileRsp = {key: string}

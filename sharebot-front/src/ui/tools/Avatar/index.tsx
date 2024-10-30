@@ -1,1 +1,1 @@
-export * from './GroupAvatar'
+export * from "./GroupAvatar";
