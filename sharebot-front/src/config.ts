@@ -6,7 +6,7 @@ export const STAGE: string = process.env.NEXT_PUBLIC_STAGE ?? "dev";
 
 export const [API_URL, SOCKET_URL] = ((): [string, string] => {
   if ((STAGE as any) == "prod") {
-    return ["https://gossip-apis.textrum.kr", ""];
+    return ["https://apis.sharebot.site", ""];
   } else {
     // dev
     if (fromLocal) {

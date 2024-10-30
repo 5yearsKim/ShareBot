@@ -34,7 +34,7 @@ export function GroupFileList(): JSX.Element {
 
 
   function handleGroupFileCreated(groupFile: GroupFileT): void {
-    groupFilesAct.splice(0, 0, groupFile);
+    groupFilesAct.load(listOpt);
   }
 
   function handleGroupFileClick(groupFile: GroupFileT): void {

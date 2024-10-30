@@ -1,6 +1,7 @@
 "use client";
-import React, { useRef, } from "react";
+import React, { useRef, useState } from "react";
 import * as GroupFileApi from "@/apis/group_files";
+import { LoadingIndicator } from "@/components/$statusTools";
 import { Clickable } from "@/ui/tools/Clickable";
 import { Col, Gap } from "@/ui/layouts";
 import { Txt } from "@/ui/texts";
@@ -21,6 +22,7 @@ export function CreateGroupFileButton(props: CreateGroupFileButtonProps): JSX.El
     onCreated
   } = props;
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const me = useMe();
@@ -48,6 +50,8 @@ export function CreateGroupFileButton(props: CreateGroupFileButtonProps): JSX.El
 
   async function handleFileUpload(file: File): Promise<void> {
     try {
+      setIsLoading(true);
+
       const { key } = await GroupApi.uploadFile(file);
 
       const form: GroupFileFormT = {
@@ -65,6 +69,9 @@ export function CreateGroupFileButton(props: CreateGroupFileButtonProps): JSX.El
     } catch (e) {
       console.warn(e);
       enqueueSnackbar("파일을 업로드 할 수 없어요.", { variant: "error" });
+    }
+    finally {
+      setIsLoading(false);
     }
   }
 
@@ -91,7 +98,10 @@ export function CreateGroupFileButton(props: CreateGroupFileButtonProps): JSX.El
         }}
       />
       <Col alignItems='center'>
-        <AddIcon fontSize='large' color='primary'/>
+        {isLoading ?
+          <LoadingIndicator/> :
+          <AddIcon fontSize='large' color='primary'/>
+        }
         <Gap y={2}/>
         <Txt color='vague.main'>파일 추가하기</Txt>
       </Col>
