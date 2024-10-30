@@ -35,7 +35,7 @@ export class GroupFileController {
 
     const updated = await this.service.update(created.id, { content: text });
 
-    // await this.service.createFileToEngine(updated);
+    await this.service.createFileToEngine(updated);
 
     return created;
   }

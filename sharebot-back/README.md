@@ -1,3 +1,3 @@
-## Gossip project backend code
+## Sharebot backend code
 
 start: pnpm apis
