@@ -7,6 +7,7 @@ import { useSnackbar } from "@/hooks/Snackbar";
 import { GroupFileItem } from "@/components/GroupFileItem";
 import { Masonry } from "@mui/lab";
 import * as GroupFileApi from "@/apis/group_files";
+import { useGroup } from "@/stores/GroupStore";
 import { ViewObserver } from "@/ui/tools/ViewObserver";
 import { CreateGroupFileButton } from "./CreateGroupFileButton";
 import { buildImgUrl } from "@/utils/media";
@@ -21,7 +22,11 @@ export function GroupFileList(): JSX.Element {
   const { showAlertDialog } = useAlertDialog();
   const { enqueueSnackbar } = useSnackbar();
 
-  const listOpt: ListGroupFileOptionT = {};
+  const group = useGroup();
+
+  const listOpt: ListGroupFileOptionT = {
+    groupId: group.id
+  };
 
   useEffect(() => {
     groupFilesAct.load(listOpt);

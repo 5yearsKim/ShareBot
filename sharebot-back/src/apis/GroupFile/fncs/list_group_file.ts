@@ -16,6 +16,11 @@ export async function listGroupFile(opt: ListGroupFileOptionT) : Promise<ListDat
     builder: (qb, select) => {
       qb.limit(limit);
 
+      if (opt.groupId) {
+        // groupId
+        qb.whereRaw(`${table}.group_id = ${opt.groupId}`);
+      }
+
       // sort
       switch (opt.sort || "recent") {
       case "recent":
